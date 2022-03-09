@@ -10,7 +10,7 @@ export default function TaskItem(props) {
         if (taskInputRef.current && task.taskId === props.editedID) {
             taskInputRef.current.focus();
         }
-    }, [props.editedID, task, taskInputRef.current]);
+    }, [props.editedID, task]);
 
     return (<div>
                 <input
