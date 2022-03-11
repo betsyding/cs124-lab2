@@ -4,23 +4,10 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 import DataContainer from './DataContainer';
 
-let initialData=[
-        {
-            taskName: "feed dog",
-            taskId: 0,
-            isCompleted: false,
-        }, {
-            taskName: "steal pomona banner",
-            taskId: 2,
-            isCompleted: true
-        }
-    ]
-
-
 ReactDOM.render(
   <React.StrictMode>
     {/*<App />*/}
-      <DataContainer data={initialData}/>
+      <DataContainer/>
   </React.StrictMode>,
   document.getElementById('root')
 );

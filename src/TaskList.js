@@ -1,8 +1,7 @@
 import TaskItem from "./TaskItem";
 
 export default function TaskList(props){
-
-    return (
+return(
         <div>
             <table>
                 <tbody>
@@ -16,6 +15,6 @@ export default function TaskList(props){
                                       setEditedID = {props.setEditedID}/>)}
                 </tbody>
             </table>
-        </div>)
+        </div>);
 }
 
