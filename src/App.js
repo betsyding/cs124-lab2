@@ -2,7 +2,6 @@ import { initializeApp } from "firebase/app";
 import {collection, deleteDoc, doc, getFirestore, query, setDoc} from "firebase/firestore";
 import './App.css';
 import './TaskItem';
-import {useEffect, useState} from "react";
 import AppHeader from "./AppHeader";
 import TaskList from "./TaskList";
 import {useCollectionData} from "react-firebase-hooks/firestore";
@@ -75,6 +74,10 @@ function App(props) {
 
     if (loading) {
         return "loading...";
+    }
+
+    if (error) {
+        return "Error: " + error;
     }
 
     console.log("hideCompleted", hideCompleted);
