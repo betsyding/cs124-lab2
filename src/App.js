@@ -2,50 +2,96 @@ import { initializeApp } from "firebase/app";
 import {collection, deleteDoc, doc, getFirestore, query, setDoc} from "firebase/firestore";
 import './App.css';
 import './TaskItem';
-import './DataContainer';
 import {useEffect, useState} from "react";
 import AppHeader from "./AppHeader";
 import TaskList from "./TaskList";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 
+const firebaseConfig = {
+    apiKey: "AIzaSyD2Qc2rKu6YBO6pugcmKQ65JQhSS7VlmEQ",
+    authDomain: "cs124-lab-3.firebaseapp.com",
+    projectId: "cs124-lab-3",
+    storageBucket: "cs124-lab-3.appspot.com",
+    messagingSenderId: "958194478289",
+    appId: "1:958194478289:web:7c9e5383b578ce60f429f0"
+};
+
+const firebaseApp = initializeApp(firebaseConfig);
+const db = getFirestore(firebaseApp);
+
+const collectionName = "Task-Items";
 
 function App(props) {
-    const [hideUncompleted, setHideUncompleted] = useState(true);
+    const [hideCompleted, setHideCompleted] = useState(true);
 
-    // const [displayData, setDisplayData] = useState(props.data);
+    const [editedID, setEditedID] = useState(null);
+    const q = query(collection(db, collectionName));
 
-    // useEffect(()=>{setDisplayData(props.data)},[props.data]);
+    const [taskItems, loading, error] = useCollectionData(q);
+    console.log(taskItems);
 
     function handleUncompleted(){
-        // if (hideUncompleted) {
-        //     setDisplayData(props.data.filter(taskItem => !taskItem.isCompleted));
-        // }
-        // else{
-        //     setDisplayData(props.data)
-        // }
-        // setHideUncompleted(!hideUncompleted);
-        // console.log(displayData)
+        setHideCompleted(!hideCompleted);
+        console.log(displayData)
     }
 
     function handleDelete(){
-    //     props.onDataChange(props.data.filter(taskItem => !taskItem.isCompleted));
-    //     //setDisplayData(props.data);
-    //     console.log(props.data)
-    //     console.log(displayData)
+        // props.onDataChange(taskItems.filter(taskItem => !taskItem.isCompleted));
+        //
+        // console.log(props.data)
+        // console.log(displayData)
+
+       taskItems.forEach(taskItem => taskItem.isCompleted? deleteDoc(doc(db, collectionName, taskItem.taskId)):taskItem);
      }
+
+    function handleChange(taskID, field, value) {
+        //setData(data.map(taskItem => taskItem.taskId === taskID ? {...taskItem, [field]:value}:taskItem))
+
+        setDoc(doc(db, collectionName, taskID),
+            {[field]: value}, {merge: true})
+    }
+
+    function handlePlusClick() {
+        // const newRandomId = generateUniqueID();
+        // const newData = data.concat(
+        //     {
+        //         taskName: "New Item",
+        //         taskId: newRandomId,
+        //         isCompleted: false,
+        //     }
+        // )
+        // setData(newData);
+        // setEditedID(newRandomId);
+
+        const uniqueId = generateUniqueID();
+        setDoc(doc(db, collectionName, uniqueId),
+            {
+                taskId: uniqueId,
+                taskName: "✎ New Item",
+                isCompleted: false,
+            });
+    }
+
+    if (loading) {
+        return "loading...";
+    }
+
+    console.log("hideCompleted", hideCompleted);
+    const displayData = taskItems.filter(taskItem => !taskItem.isCompleted || !hideCompleted);
+    console.log("displayData", displayData);
 
   return (
       <div>
           <AppHeader/>
-          <TaskList data = {props.data}
-                    handleChange={props.handleChange} editedID={props.editedID} setEditedID = {props.setEditedID} />
-          <button className="plus-button" type="button" id="plus" onClick = {props.handlePlusClick}> + </button>
-          <label htmlFor="plus" className="newItem"> Create new item </label>
-          <br/>
           <button className="uncompleted" type="button" id="showUncom" onClick = {handleUncompleted}>
-              {hideUncompleted? "Hide completed items":"Show all items"} </button>
-          <button className="deleteCompleted" type="button" id="delete" onClick = {handleDelete}> Delete completed items </button>
+              {hideCompleted? "Show all":"Hide completed"} </button>
+          <button className="deleteCompleted" type="button" id="delete" onClick = {handleDelete}> Delete completed</button>
+          <TaskList data = {displayData}
+                    handleChange={handleChange} editedID={editedID} setEditedID = {setEditedID} />
+          <div className = "divButton"> <button className="plus-button" type="button" id="plus" onClick = {handlePlusClick}> + </button>
+          <label htmlFor="plus" className="newItem"> Create new item </label></div>
+          <br/>
       </div>
   );
 }
