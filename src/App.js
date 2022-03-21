@@ -6,6 +6,7 @@ import AppHeader from "./AppHeader";
 import TaskList from "./TaskList";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
+import {useState} from "react";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD2Qc2rKu6YBO6pugcmKQ65JQhSS7VlmEQ",
@@ -21,7 +22,7 @@ const db = getFirestore(firebaseApp);
 
 const collectionName = "Task-Items";
 
-function App(props) {
+function App() {
     const [hideCompleted, setHideCompleted] = useState(true);
 
     const [editedID, setEditedID] = useState(null);
@@ -47,7 +48,7 @@ function App(props) {
     function handleChange(taskID, field, value) {
         //setData(data.map(taskItem => taskItem.taskId === taskID ? {...taskItem, [field]:value}:taskItem))
 
-        setDoc(doc(db, collectionName, taskID),
+        void setDoc(doc(db, collectionName, taskID),
             {[field]: value}, {merge: true})
     }
 
@@ -64,7 +65,7 @@ function App(props) {
         // setEditedID(newRandomId);
 
         const uniqueId = generateUniqueID();
-        setDoc(doc(db, collectionName, uniqueId),
+        void setDoc(doc(db, collectionName, uniqueId),
             {
                 taskId: uniqueId,
                 taskName: "✎ New Item",
