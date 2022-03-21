@@ -68,7 +68,7 @@ function App() {
         void setDoc(doc(db, collectionName, uniqueId),
             {
                 taskId: uniqueId,
-                taskName: "✎ New Item",
+                taskName: "",
                 isCompleted: false,
             });
     }
