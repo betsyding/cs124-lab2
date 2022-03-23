@@ -1,5 +1,3 @@
-import {useEffect, useRef} from "react";
-
 
 export default function TaskItem(props) {
     const task = props.taskItem;
