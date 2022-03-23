@@ -1,0 +1,14 @@
+.priorities{
+    font-family:Avenir;
+    font-size:8pt;
+    width: 45px;
+    height: 18px;
+    border-color: steelblue;
+    padding-bottom: 2px;
+    padding-top: 2px;
+}
+
+.high{
+    font-color: red;
+}
+

@@ -70,6 +70,7 @@ function App() {
                 taskId: uniqueId,
                 taskName: "",
                 isCompleted: false,
+                priority: "high",
             });
     }
 

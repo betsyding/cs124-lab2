@@ -3,7 +3,7 @@ Megan Maley
 
 Betsy Ding
 
-Lab 2 Design Document 
+Lab 2 Design Document
 
 For Lab 2, we decided to keep many of the original elements from our design in Lab 1. From Lab 1, we carried over the alignment and fonts of the text, including the header and list items, as well as the purple and blue theme, and the button orientation. These design choices were based on Dr. Milburn’s lecture on using only 2-3 colors, 2-3 font choices, and the Western appeal of left alignment. 
 
@@ -122,3 +122,16 @@ We also experienced several minor challenges with the buttons used to delete ite
 
 ![alt_text](images/image2.jpg "image_tooltip")
 
+
+Lab 3 Updates
+
+Based on feedback we received in user testing and from Professor Rhodes, we moved the buttons from the bottom of the page to the top of the application.
+We did this because when a lot of tasks were added, the tasks overlapped the buttons. We also adjusted the alignment of the buttons and checkboxes.
+
+We also introduced prioritization with a drop-down menu beside the checkbox with options high, mid, and low. 
+This is updated in firestore as well.
+
+Additionally, we've replaced the initial text "New item" in the text box with a filler "New item" that disappears when the user
+clicks on the box to edit.
+
+New
