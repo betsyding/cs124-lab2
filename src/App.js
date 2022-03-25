@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import {collection, deleteDoc, doc, getFirestore, query, setDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, getFirestore, query, setDoc, orderBy} from "firebase/firestore";
 import './App.css';
 import './TaskItem';
 import AppHeader from "./AppHeader";
@@ -23,10 +23,11 @@ const db = getFirestore(firebaseApp);
 const collectionName = "Task-Items";
 
 function App() {
-    const [hideCompleted, setHideCompleted] = useState(true);
+    const [hideCompleted, setHideCompleted] = useState(false);
+    const [sortType, setSortType] = useState("priority");
 
     const [editedID, setEditedID] = useState(null);
-    const q = query(collection(db, collectionName));
+    const q = query(collection(db, collectionName), orderBy(sortType, "asc"));
 
     const [taskItems, loading, error] = useCollectionData(q);
     console.log(taskItems);
@@ -38,14 +39,12 @@ function App() {
 
     function handleDelete(){
         // props.onDataChange(taskItems.filter(taskItem => !taskItem.isCompleted));
-        //
-        // console.log(props.data)
-        // console.log(displayData)
 
        taskItems.forEach(taskItem => taskItem.isCompleted? deleteDoc(doc(db, collectionName, taskItem.taskId)):taskItem);
      }
 
     function handleChange(taskID, field, value) {
+        console.log(taskID, field, value);
         //setData(data.map(taskItem => taskItem.taskId === taskID ? {...taskItem, [field]:value}:taskItem))
 
         void setDoc(doc(db, collectionName, taskID),
@@ -70,7 +69,7 @@ function App() {
                 taskId: uniqueId,
                 taskName: "",
                 isCompleted: false,
-                priority: "high",
+                priority: "ASAP",
             });
     }
 
@@ -89,11 +88,23 @@ function App() {
   return (
       <div>
           <AppHeader/>
+
           <button className="uncompleted" type="button" id="showUncom" onClick = {handleUncompleted}>
               {hideCompleted? "Show all":"Hide completed"} </button>
+
           <button className="deleteCompleted" type="button" id="delete" onClick = {handleDelete}> Delete completed</button>
+
+          <div className="sort"> Sort By:
+              <select className="sorting"
+                      onChange={(e) => setSortType(e.target.value)}>
+                  <option value = "priority"> priority </option>
+                  <option value = "taskName"> name </option>
+              </select>
+          </div>
+
           <TaskList data = {displayData}
                     handleChange={handleChange} editedID={editedID} setEditedID = {setEditedID} />
+
           <div className = "divButton"> <button className="plus-button" type="button" id="plus" onClick = {handlePlusClick}> + </button>
           <label htmlFor="plus" className="newItem"> Create new item </label></div>
           <br/>

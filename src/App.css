@@ -94,3 +94,14 @@ label.listItem:hover {
 .divButton{
   padding-left: 6px;
 }
+
+.sort{
+  font-family: Avenir;
+  padding-left: 8px;
+  padding-top: 20px;
+}
+
+.sorting{
+  font-family: Avenir;
+  height: 18px;
+}

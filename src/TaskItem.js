@@ -2,9 +2,8 @@ import './TaskItem.css';
 
 export default function TaskItem(props) {
     const task = props.taskItem;
-
+    console.log(task.taskName, task.priority);
     return (<div>
-
                 <input
                     type = "checkbox"
                     checked = {props.isCompleted}
@@ -12,11 +11,11 @@ export default function TaskItem(props) {
                     onChange={(e) =>
                     props.handleChange(task.taskId, "isCompleted", e.target.checked)}/>
 
-        <select className = "priorities"
+        <select className = "priorities" defaultValue={task.priority}
                 onChange={(e) => props.handleChange(task.taskId, "priority", e.target.value)}>
-            <option className="high" value="high">High</option>
-            <option className="mid" value="mid">Mid</option>
-            <option className="low" value="low">Low</option>
+            <option className="asap" value="asap">ASAP</option>
+            <option className="mid" value="mid">Maybe</option>
+            <option className="naur" value="naur">Not Now</option>
         </select>
 
                 {
@@ -28,9 +27,7 @@ export default function TaskItem(props) {
                             value = {props.taskName} id = {props.taskId}
                             onChange={(e)=> props.handleChange(task.taskId, "taskName", e.target.value)}
                             onBlur = {() => props.setEditedID(null)}
-                            onKeyPress = {(e)=>{if (e.key === "Enter") {
-                                                                                e.target.blur();}
-                                                                            }}
+                            onKeyPress = {(e)=>{if (e.key === "Enter") {e.target.blur();}}}
                             placeholder = "✎ New Task"/>
                         // : <span id="label" onClick ={() => props.setEditedID(task.taskId)}>{task.taskName}</span>
                     }
