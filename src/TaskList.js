@@ -1,9 +1,8 @@
 import TaskItem from "./TaskItem";
-import {useState} from "react";
+import "./TaskList.css"
 
 export default function TaskList(props){
-
-    return (
+return(
         <div>
             <table>
                 <tbody>
@@ -17,6 +16,6 @@ export default function TaskList(props){
                                       setEditedID = {props.setEditedID}/>)}
                 </tbody>
             </table>
-        </div>)
+        </div>);
 }
 

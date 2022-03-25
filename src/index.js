@@ -1,27 +1,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
-import DataContainer from './DataContainer';
-
-let initialData=[
-        {
-            taskName: "feed dog",
-            taskId: 0,
-            isCompleted: false,
-        }, {
-            taskName: "steal pomona banner",
-            taskId: 2,
-            isCompleted: true
-        }
-    ]
-
+import App from "./App";
 
 ReactDOM.render(
   <React.StrictMode>
     {/*<App />*/}
-      <DataContainer data={initialData}/>
+      <App/>
   </React.StrictMode>,
   document.getElementById('root')
 );

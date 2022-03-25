@@ -3,7 +3,8 @@ Megan Maley
 
 Betsy Ding
 
-Lab 2 Design Document 
+Lab 2 Design Document
+** See bottom for Lab 3 updates
 
 For Lab 2, we decided to keep many of the original elements from our design in Lab 1. From Lab 1, we carried over the alignment and fonts of the text, including the header and list items, as well as the purple and blue theme, and the button orientation. These design choices were based on Dr. Milburn’s lecture on using only 2-3 colors, 2-3 font choices, and the Western appeal of left alignment. 
 
@@ -121,4 +122,32 @@ We also experienced several minor challenges with the buttons used to delete ite
 
 
 ![alt_text](images/image2.jpg "image_tooltip")
+
+
+Lab 3 Updates
+
+Based on feedback we received in user testing and from Professor Rhodes, we moved the buttons from the bottom of the page to the top of the application.
+We did this because when a lot of tasks were added, the tasks overlapped the buttons. We also adjusted the alignment of the buttons and checkboxes.
+
+We also introduced prioritization with a drop-down menu beside the checkbox with options high, mid, and low. 
+This is updated in firestore as well. We customized the menu bar to match the style of the application with blue borders and 
+Avenir font.
+
+Additionally, we've replaced the initial text "New item" in the text box with a filler "New item" that disappears when the user
+clicks on the box to edit.
+
+New User Testing
+
+Marcos: Doesn't quite understand priority label name choices -- names should be more intuitive. He also thinks 
+        the default for the show uncompleted should be flipped. Sorting by name while editing name is a little 
+        annoying -- suggested creating our own sort function. 
+
+Koby: Was pleased with the ability to hide items. Button labels should be bigger, thinks priority should be
+     not set to high, or perhaps nothing at all -- introduce a no priority option. Would be nice to have a 
+     confirmation button for deletion. Likes the pencil icon which signifies you can edit.
+
+Meggie: Started by deleting everything, was easy to do. Very satisfying to hit enter to save the task item. 
+Very satisfying for task items to sort automatically as we're typing. Should have a pop-up warming for deletion.
+Love the pencil icon - great design choice. Sees no issues with adding multiple items. Coveneient that the delete and 
+hide buttons move with the user as they scroll down. Great color scheme. 
 

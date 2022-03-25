@@ -1,17 +1,8 @@
-import './DataContainer'
-import {useEffect, useRef} from "react";
-
+import './TaskItem.css';
 
 export default function TaskItem(props) {
     const task = props.taskItem;
-    const taskInputRef = useRef(null);
-
-    useEffect(() => {
-        if (taskInputRef.current && task.taskId === props.editedID) {
-            taskInputRef.current.focus();
-        }
-    }, [props.editedID, task, taskInputRef.current]);
-
+    console.log(task.taskName, task.priority);
     return (<div>
                 <input
                     type = "checkbox"
@@ -20,18 +11,27 @@ export default function TaskItem(props) {
                     onChange={(e) =>
                     props.handleChange(task.taskId, "isCompleted", e.target.checked)}/>
 
-                    {
-                    task.taskId === props.editedID?
+        <select className = "priorities" defaultValue={task.priority}
+                onChange={(e) => props.handleChange(task.taskId, "priority", e.target.value)}>
+            <option className="asap" value="asap">ASAP</option>
+            <option className="mid" value="mid">Maybe</option>
+            <option className="naur" value="naur">Not Now</option>
+        </select>
+
+                {
+                    // task.taskId === props.editedID?
+
                         <input
                             className = "newItem isEditing"
                             type = "text"
                             value = {props.taskName} id = {props.taskId}
                             onChange={(e)=> props.handleChange(task.taskId, "taskName", e.target.value)}
                             onBlur = {() => props.setEditedID(null)}
-                            onKeyPress = {(e)=>e.key === "Enter" && props.setEditedID(null)}
-                            ref = {taskInputRef}
-                            placeholder = "New Task"/>
-                        : <span id="label" onClick ={() => props.setEditedID(task.taskId)}>{task.taskName}</span>
+                            onKeyPress = {(e)=>{if (e.key === "Enter") {e.target.blur();}}}
+                            placeholder = "✎ New Task"/>
+                        // : <span id="label" onClick ={() => props.setEditedID(task.taskId)}>{task.taskName}</span>
                     }
+
+
             </div>)
 }
