@@ -1,14 +1,16 @@
 .priorities{
     font-family:Avenir;
-    font-size:8pt;
+    font-size:12pt;
     width: 66px;
-    height: 18px;
+    height: 23px;
     border-color: steelblue;
     padding-bottom: 2px;
     padding-top: 2px;
+    background-color: rgb(245, 245, 245);
+}
+.newItem{
+    font-size: 12pt;
 }
 
-.high{
-    font-color: red;
-}
+
 

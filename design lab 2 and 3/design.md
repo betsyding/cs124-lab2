@@ -151,3 +151,8 @@ Very satisfying for task items to sort automatically as we're typing. Should hav
 Love the pencil icon - great design choice. Sees no issues with adding multiple items. Coveneient that the delete and 
 hide buttons move with the user as they scroll down. Great color scheme. 
 
+
+Lab 4 Updates
+
+Accessibility:
+We enlarged the font size of the buttons, drop down menu, and task items to be 12pt (16px), following the minimum guideline.

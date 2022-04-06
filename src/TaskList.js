@@ -1,7 +1,9 @@
 import TaskItem from "./TaskItem";
 import "./TaskList.css"
+import {useCollectionData} from "react-firebase-hooks/firestore";
 
 export default function TaskList(props){
+    // const = useCollectionData(query(collection(props.db, "Lists", props.listID, "Tasks Items" ))
 return(
         <div>
             <table>
