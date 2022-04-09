@@ -5,8 +5,9 @@ export default function TaskItem(props) {
     const task = props.taskItem;
     const [currentInput, setCurrentInput] = useState(task.taskName);
 
-    console.log(task.taskName, task.priority);
+    // console.log(task.taskName, task.priority);
     return (<tr>
+        <td>
         <input
             type="checkbox"
             checked={props.isCompleted}
@@ -39,6 +40,6 @@ export default function TaskItem(props) {
                 }}
                 placeholder="✎ New Task"/>
         }
-
+        </td>
     </tr>)
 }

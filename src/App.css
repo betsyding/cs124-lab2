@@ -112,3 +112,21 @@ label.listItem:hover {
   height: 22px;
   background-color: rgb(245, 245, 245)
 }
+
+.listButton{
+  background-color: lightsteelblue;
+  font-family: Avenir;
+  font-size: 15pt;
+}
+
+.black-border {
+  border: 5px solid red;
+}
+.list-button{
+  border-radius: 50%;
+  border-width: thin;
+  color: steelblue;
+  border-color: steelblue;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.05), 0 6px 20px 0 rgba(0,0,0,0.05);
+
+}
