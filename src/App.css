@@ -1,7 +1,16 @@
 body{
   padding-left: 8pt;
 }
-/*// @media screen and (max-width: )*/
+ @media screen and (max-width:1200px){
+   .centerContent {
+    /*max-width: 200%;*/
+    /*max-height:200%;*/
+     width: 100%;
+     margin-left: 25%;
+     margin-right:25%;
+  }
+
+ }
 
 .plus-button {
   border-radius: 50%;
@@ -119,9 +128,6 @@ label.listItem:hover {
   font-size: 15pt;
 }
 
-.black-border {
-  border: 5px solid red;
-}
 .list-button{
   border-radius: 50%;
   border-width: thin;
