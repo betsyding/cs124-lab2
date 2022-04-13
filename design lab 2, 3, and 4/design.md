@@ -151,3 +151,62 @@ Very satisfying for task items to sort automatically as we're typing. Should hav
 Love the pencil icon - great design choice. Sees no issues with adding multiple items. Coveneient that the delete and 
 hide buttons move with the user as they scroll down. Great color scheme. 
 
+
+Lab 4 Updates
+
+Accessibility:
+
+Keyboard accessibility video: https://youtu.be/bAf49JZbX6I
+Voiceover accessibility video: https://youtu.be/EtpYchwYGUo
+
+We enlarged the font size of the buttons, drop-down menu, and task items to be 12pt (16px), following the minimum guideline. Furthermore, we ensured that the blue, grey, and blacks we used in our design fit the specifications of contrast for easy access. We checked each shade by using the Contrast Checker tool on WebAim and made sure that large text had a ratio of 3:1 and smaller text had a ratio of 4.5:1 for color contrast.
+
+We also spent a considerable amount of time making sure the voice-over was functional and corresponded to how a user may interact with our application. We added Aria labels in a few different spots, including the buttons (add a new item, create a new item, delete list, hide completed, delete completed) so that the voiceover not only described the button but also specified which list (by the list name) the user was interacting with.
+
+Responsive Design:
+
+Our application design accounts for resizing in a couple of ways. 1) As the user expands/collapses the screen, the list name moves along with it and stays centered. 2) As we played around with the responsive design, we realized the buttons at the bottom of each list moved in a weird way. We fixed this by introducing a grid structure that facilitated screen movement. 3) We also made the borders and highlighted background be responsive with the changing screen sizes.
+
+Other Design Updates and Reflections
+
+We decided to move all the functionality of a task list (create a new item, sorting, delete completed, etc.) to a separate component from App. This way, the user can interact with and manipulate task lists individually. Transferring the functionality of lists from the App component to the TaskList component proved to be challenging, as it required us to rethink the hierarchy of our app while also tweaking the code to fit this new component. Overall, a lot of the functionality between lists and task items stayed the same, it just required a bit of restructuring.
+We decided to include an editable list name that operates similarly to the new task name textbox. We also added a third button that allows the user to delete the list.
+
+
+As for the UI, we took inspiration from Dr. Milburn’s design principles by drawing parallels between how a user creates new items and creates a new list. We think this makes the App more intuitive and aesthetic.
+
+New User Testing: 
+
+Liz: Thought this is a super useful app since there's multiple ways to sort the tasks. Really like the priority feature. 
+Date seems cool but would be more helpful if she could specify due date as well. All the buttons are very accessible. Thought
+That making the "hide completed/delete items" as a bit too big since they stand out more than the create new item button.
+Would use this regularly in her life.
+
+Angela: Really likes that you can choose to hide and show the completed items, since many to-do types of apps just automatically 
+send things to the bottom or hide items. Also likes the ability to sort the items in different ways. One major design flaw, 
+however, is the inability to add longer, multi-line tasks; i.e. the words get cut off.
+
+Rachel: - The create a new list button needs to have some action that mimics clicking because I clicked it like 5 times thinking it didn’t do anything when it did create new lists. The user just can’t see them because they are lower on the page than the view
+- I like how when I am inputting the name for the list it automatically/ immediately checks and sorts them when I am inputting
+- When I click on ‘hide completed items’ when there are items I have already completed and then click ‘delete completed items’ then the button does feel like I did an action but because I can’t see it being done it doesn’t truly feel compelled. Also the “show all items’ button is still showing after I have clicked ‘delete completed items’ but the only items left are the ones showing on the list so the button for “show all items’ might needs to change back to hide completed items
+- For the sort by date option I am unsure how how to go about inputing or sorting by the date because the form of putting my own date in and then applying a low, medium, high value to it doesn’t feel right. Maybe when the user clicks the sort by date option, have a format of _ _/_ _ /_ _ _ _ pop up next to the name of the task
+- Lastly, there might be too many pre made lists when the user first visits the page. I suggest just starting with one and letting the user go from there
+- Overall, I really like this interface because it is simple and straightforward. I was able to easily understand what was required of me. Based on the usability principles the simplicity is great, the familiarity is done well, the consistency is great, the guidance can use work on what I said above, direct feedback can also use a bit more attention in places, and good information architecture is great because it is presented as you understand my mental model
+
+Michael: All the key functionality of a to-do list is there, so good job there. 
+One thing that is a bit unclear is the checkmarks, if you put “show all items” “delete completed items” button up top, then people know what to do
+And don’t forget about spacing if you can, things are a bit scrunched up like single spaced papers
+
+Andrea:
+
+pros:
+- the hide/delete completed items tasks
+- the priority ranking feature
+- ability to have different types of lists
+-sorted by option is handy
+
+cons:
+
+-not much, but I think creating a separate feature for due dates would be helpful/less confusing instead of typing the dates into the title item!
+
+-additional idea (but not necessary) is to add in a collapse&expand feature for each of the lists that would just show the title

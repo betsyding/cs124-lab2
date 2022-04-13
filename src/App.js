@@ -1,12 +1,11 @@
 import { initializeApp } from "firebase/app";
-import {collection, deleteDoc, doc, getFirestore, query, setDoc, orderBy} from "firebase/firestore";
+import {collection, doc, getFirestore, query, setDoc} from "firebase/firestore";
 import './App.css';
 import './TaskItem';
 import AppHeader from "./AppHeader";
 import TaskList from "./TaskList";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
-import {useState} from "react";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD2Qc2rKu6YBO6pugcmKQ65JQhSS7VlmEQ",
@@ -20,58 +19,24 @@ const firebaseConfig = {
 const firebaseApp = initializeApp(firebaseConfig);
 const db = getFirestore(firebaseApp);
 
-const collectionName = "Task-Items";
+const collectionName = "Lists";
 
 function App() {
-    const [hideCompleted, setHideCompleted] = useState(false);
-    const [sortType, setSortType] = useState("priority");
 
-    const [editedID, setEditedID] = useState(null);
-    const q = query(collection(db, collectionName), orderBy(sortType, "asc"));
+    const q = query(collection(db, "Lists"));
+    const [lists, loading, error] = useCollectionData(q);
 
-    const [taskItems, loading, error] = useCollectionData(q);
-    console.log(taskItems);
 
-    function handleUncompleted(){
-        setHideCompleted(!hideCompleted);
-        console.log(displayData)
+    function addList() {
+        const uniqueListId = generateUniqueID();
+        void setDoc(doc(db,collectionName, uniqueListId),
+        {
+            listId: uniqueListId,
+            listName: "",
+            isShown: true ,
+        });
     }
 
-    function handleDelete(){
-        // props.onDataChange(taskItems.filter(taskItem => !taskItem.isCompleted));
-
-       taskItems.forEach(taskItem => taskItem.isCompleted? deleteDoc(doc(db, collectionName, taskItem.taskId)):taskItem);
-     }
-
-    function handleChange(taskID, field, value) {
-        console.log(taskID, field, value);
-        //setData(data.map(taskItem => taskItem.taskId === taskID ? {...taskItem, [field]:value}:taskItem))
-
-        void setDoc(doc(db, collectionName, taskID),
-            {[field]: value}, {merge: true})
-    }
-
-    function handlePlusClick() {
-        // const newRandomId = generateUniqueID();
-        // const newData = data.concat(
-        //     {
-        //         taskName: "New Item",
-        //         taskId: newRandomId,
-        //         isCompleted: false,
-        //     }
-        // )
-        // setData(newData);
-        // setEditedID(newRandomId);
-
-        const uniqueId = generateUniqueID();
-        void setDoc(doc(db, collectionName, uniqueId),
-            {
-                taskId: uniqueId,
-                taskName: "",
-                isCompleted: false,
-                priority: "ASAP",
-            });
-    }
 
     if (loading) {
         return "loading...";
@@ -81,32 +46,28 @@ function App() {
         return "Error: " + error;
     }
 
-    console.log("hideCompleted", hideCompleted);
-    const displayData = taskItems.filter(taskItem => !taskItem.isCompleted || !hideCompleted);
-    console.log("displayData", displayData);
 
   return (
-      <div>
+      <div className="centerContent">
           <AppHeader/>
-
-          <button className="uncompleted" type="button" id="showUncom" onClick = {handleUncompleted}>
-              {hideCompleted? "Show all":"Hide completed"} </button>
-
-          <button className="deleteCompleted" type="button" id="delete" onClick = {handleDelete}> Delete completed</button>
-
-          <div className="sort"> Sort By:
-              <select className="sorting"
-                      onChange={(e) => setSortType(e.target.value)}>
-                  <option value = "priority"> priority </option>
-                  <option value = "taskName"> name </option>
-              </select>
-          </div>
-
-          <TaskList data = {displayData}
-                    handleChange={handleChange} editedID={editedID} setEditedID = {setEditedID} />
-
-          <div className = "divButton"> <button className="plus-button" type="button" id="plus" onClick = {handlePlusClick}> + </button>
-          <label htmlFor="plus" className="newItem"> Create new item </label></div>
+          <tbody>
+          <br/>
+          <div className = "listButton">
+              <button className="list-button"
+                      type = "button"
+                      id="newList"
+                      onClick = {addList}
+                      aria-label={"Create new list"}
+              >+</button>
+              <label htmlFor="newList" className = "listName" > Create new list </label></div>
+          <br/>
+          {lists.map(list => <TaskList
+              db={db}
+              listId={list.listId}
+              listName = {list.listName}
+              key={list.listId}
+          />)}
+          </tbody>
           <br/>
       </div>
   );

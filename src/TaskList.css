@@ -3,3 +3,24 @@ table{
     padding-left:4px;
 }
 
+.newList {
+    padding-left:20px;
+    font-family: Avenir;
+    font-size: 15pt;
+    color:steelblue;
+    text-align: center;
+    font-weight: bold;
+}
+
+.everything{
+    border: 2px solid steelblue;
+    display:grid;
+    grid-template-rows: 20px 20px 20px 50px;
+}
+
+/*.divButton{*/
+/*    display: grid;*/
+/*    grid-template-columns: 200px 200px;*/
+/*    grid-column: 1;*/
+/*}*/
+

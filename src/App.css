@@ -1,6 +1,25 @@
 body{
   padding-left: 8pt;
 }
+ /*@media screen and (max-width:1200px){*/
+ /*  .centerContent {*/
+ /*   !*max-width: 200%;*!*/
+ /*   !*max-height:200%;*!*/
+ /*    width: 100%;*/
+ /*    margin-left: 25%;*/
+ /*    margin-right:25%;*/
+ /* }*/
+
+.centerContent{
+  display:grid;
+  grid-template-rows: 125px 400px;
+  /*grid-template-columns: 1fr;*/
+  /*grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));*/
+}
+.newList{
+  grid-column-start:1;
+  grid-column-end: 1;
+}
 
 .plus-button {
   border-radius: 50%;
@@ -38,41 +57,43 @@ label.listItem:hover {
 }
 #label {
   width: 230px;
-  font-family: Avenir
+  font-family: Avenir;
+  font-size: 12pt;
 }
 
 .uncompleted {
   font-family: Avenir;
-  font-size: 7.5pt;
+  font-size: 12pt;
   border-color: steelblue;
   border-width: thin;
   width: 100px;
-  height: 20px;
-  grid-row:3;
+  height: 67px;
+  grid-row:4;
   grid-column:1;
   box-shadow: 0 8px 8px 0 rgba(0,0,0,0.07), 0 6px 8px 0 rgba(0,0,0,0.07);
-  display: block;
-  position: fixed;
-  margin: -6% 0% 0% 53%;
-
+  display: grid;
+  margin: 20px 0px -30px 10px;
+  /*position:relative;*/
 }
+
+
 .uncompleted:hover {
   background-color: lightgray;
 }
 
 .deleteCompleted {
   font-family: Avenir;
-  font-size: 7.5pt;
+  font-size: 12pt;
   border-color: steelblue;
   border-width: thin;
   width: 100px;
-  height: 20px;
+  height: 67px;
   grid-row:4;
   grid-column:1;
   box-shadow: 0 8px 8px 0 rgba(0,0,0,0.05), 0 6px 6px 0 rgba(0,0,0,0.05);
-  display: block;
-  position: fixed;
-  margin: -6% 0% 0% 15%;
+  display: grid;
+  margin: -66px 0px 15px 130px;
+  position:relative;
 }
 
 .deleteCompleted:hover {
@@ -97,11 +118,43 @@ label.listItem:hover {
 
 .sort{
   font-family: Avenir;
+  font-size: 12pt;
   padding-left: 8px;
   padding-top: 20px;
 }
 
 .sorting{
   font-family: Avenir;
-  height: 18px;
+  font-size: 12pt;
+  height: 22px;
+  background-color: rgb(245, 245, 245)
+}
+
+.listButton{
+  background-color: lightsteelblue;
+  font-family: Avenir;
+  font-size: 15pt;
+}
+
+.list-button{
+  border-radius: 50%;
+  border-width: thin;
+  color: steelblue;
+  border-color: steelblue;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.05), 0 6px 20px 0 rgba(0,0,0,0.05);
+
+}
+.deleteList {
+  font-family: Avenir;
+  font-size: 12pt;
+  border-color: steelblue;
+  border-width: thin;
+  width: 100px;
+  height: 28px;
+  grid-row:4;
+  grid-column:1;
+  box-shadow: 0 8px 8px 0 rgba(0,0,0,0.05), 0 6px 6px 0 rgba(0,0,0,0.05);
+  display: grid;
+  margin: 0px 0px -10px 10px;
+  position:relative;
 }
