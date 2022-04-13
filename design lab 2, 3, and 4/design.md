@@ -156,3 +156,6 @@ Lab 4 Updates
 
 Accessibility:
 We enlarged the font size of the buttons, drop down menu, and task items to be 12pt (16px), following the minimum guideline.
+Furthermore, we ensured that the blue, grey, and blacks we used in our design fit the specifications of contrast for
+easy access. We checked each shade by using the Contrast Checker tool on WebAim and made sure that large text had a ratio
+of 3:1 and smaller text had a ratio 4.5:1 for color contrast. 

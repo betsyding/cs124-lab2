@@ -1,4 +1,4 @@
-import {collection, deleteDoc, doc, query, serverTimestamp, setDoc, updateDoc} from "firebase/firestore";
+import {collection, deleteDoc, doc, query, serverTimestamp, setDoc, updateDoc, orderBy} from "firebase/firestore";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
 import TaskItem from "./TaskItem";
@@ -8,10 +8,11 @@ import "./TaskList.css";
 export default function TaskList(props) {
 
     const [hideCompleted, setHideCompleted] = useState(false);
-    const [taskItems, loading, error] = useCollectionData(query(collection(props.db, "Lists", props.listId, "Tasks")))
     const [editedID, setEditedID] = useState(null);
     const [currentInput, setCurrentInput] = useState(props.listName);
     const [sortType, setSortType] = useState("priority");
+    const q = query(collection(props.db, "Lists", props.listId, "Tasks"), orderBy(sortType, sortType === "creationDate"? "desc":"asc"));
+    const [taskItems, loading, error] = useCollectionData(q);
 
     function handleDeleteItem(){
         taskItems.forEach(taskItem => taskItem.isCompleted? deleteDoc(doc(props.db, "Lists", props.listId, "Tasks", taskItem.taskId)):taskItem);
@@ -43,6 +44,10 @@ export default function TaskList(props) {
             });
     }
 
+    function handleDeleteList(){
+        void deleteDoc(doc(props.db, "Lists", props.listId));
+    }
+
     return (
         <div className="everything">
             <br/>
@@ -51,6 +56,7 @@ export default function TaskList(props) {
                 type="text"
                 value={currentInput}
                 id={props.listId}
+                aria-label={(currentInput === ''? "type task list name here": props.listName)}
                 onChange={(e)=>setCurrentInput(e.target.value)}
                 onBlur={() => {props.setEditedID(null);
                     handleChangeList(props.listId, "taskName", currentInput);
@@ -66,7 +72,8 @@ export default function TaskList(props) {
             <div className="sort"> Sort By:
                 <select className="sorting"
                         onChange={(e) => setSortType(e.target.value)}
-                        defaultValue={sortType}>
+                        defaultValue={sortType}
+                        aria-label={"Drop down menu to specify sorting for list " + props.listName}>
                     <option value = "priority"> priority </option>
                     <option value = "taskName"> name </option>
                     <option value = "creationDate">date</option>
@@ -77,7 +84,7 @@ export default function TaskList(props) {
             {!loading && !error &&
                 <>
                 <table>
-                    <tbody>
+                    <tbody className = "makingGrids">
                     {taskItems.map(t =>
                         (!t.isCompleted || !hideCompleted) && <TaskItem taskItem={t}
                                   key={t.taskId}
@@ -90,13 +97,22 @@ export default function TaskList(props) {
                 </table>
                 </>}
             <div className = "divButton">
-                <button className="plus-button" type="button" id="plus" onClick = {addTask}> + </button>
+                <button className="plus-button"
+                        type="button"
+                        id="plus"
+                        onClick = {addTask}
+                        aria-label={"Create new item button."}> + </button>
+
                 <label htmlFor="plus" className="newItem"> Create new item </label>
+                <br/>
 
                 <button className="uncompleted" type="button" id="showUncom" onClick = {handleUncompleted}>
-                {hideCompleted? "Show all":"Hide completed"} </button>
+                {hideCompleted? "Show all items":"Hide completed items"} </button>
 
-                <button className="deleteCompleted" type="button" id="delete" onClick = {handleDeleteItem}> Delete completed</button>
+                <button className="deleteCompleted" type="button" id="delete" onClick = {handleDeleteItem}> Delete completed items</button>
+                    <button className="deleteList" type="button" id="deleteList" onClick = {handleDeleteList}> Delete List</button>
+
+
             </div>
         </div>
             <br/>

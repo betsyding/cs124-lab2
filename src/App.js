@@ -25,7 +25,7 @@ const collectionName = "Lists";
 
 function App() {
 
-    const q = query(collection(db, "Lists"))
+    const q = query(collection(db, "Lists"));
     const [lists, loading, error] = useCollectionData(q);
 
 
@@ -52,10 +52,15 @@ function App() {
   return (
       <div className="centerContent">
           <AppHeader/>
-
           <tbody>
           <br/>
-          <div className = "listButton"><button className="list-button" type = "button" id="newList" onClick = {addList}>+</button>
+          <div className = "listButton">
+              <button className="list-button"
+                      type = "button"
+                      id="newList"
+                      onClick = {addList}
+                      aria-label={"Create new list"}
+              >+</button>
               <label htmlFor="newList" className = "listName" > Create new list </label></div>
           <br/>
           {lists.map(list => <TaskList

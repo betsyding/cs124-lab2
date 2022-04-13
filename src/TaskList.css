@@ -14,5 +14,13 @@ table{
 
 .everything{
     border: 2px solid steelblue;
+    display:grid;
+    grid-template-rows: 20px 20px 20px 50px;
 }
+
+/*.divButton{*/
+/*    display: grid;*/
+/*    grid-template-columns: 200px 200px;*/
+/*    grid-column: 1;*/
+/*}*/
 
