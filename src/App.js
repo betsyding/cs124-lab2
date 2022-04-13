@@ -6,8 +6,6 @@ import AppHeader from "./AppHeader";
 import TaskList from "./TaskList";
 import {useCollectionData} from "react-firebase-hooks/firestore";
 import {generateUniqueID} from "web-vitals/dist/modules/lib/generateUniqueID";
-import {useState} from "react";
-import {Tab} from "./Tab";
 
 const firebaseConfig = {
     apiKey: "AIzaSyD2Qc2rKu6YBO6pugcmKQ65JQhSS7VlmEQ",
