@@ -38,7 +38,7 @@ For our final design, we decided to format each frame in each HTML page with a p
         
 
 
-_Left: Kaiser Permanente Interface; Right: Reminders App Interface_
+_Left: Kaiser Permanente Interface; Right: Reminders SignedInApp Interface_
 
 Before going forward with these style and design elements, we sketched out a rough flow chart of the sequence of how each page should look before, during, and after each task:
 

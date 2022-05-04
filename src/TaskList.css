@@ -12,12 +12,32 @@ table{
     font-weight: bold;
 }
 
+.shareList{
+    font-family: Avenir;
+    font-size: 12pt;
+    border-color: steelblue;
+    border-width: thin;
+    width: 100px;
+    height: 28px;
+    grid-row:4;
+    grid-column:1;
+    box-shadow: 0 8px 8px 0 rgba(0,0,0,0.05), 0 6px 6px 0 rgba(0,0,0,0.05);
+    display: grid;
+    margin: -28px 20px 0px 130px;
+    position:relative;
+}
+
 .everything{
     border: 2px solid steelblue;
     display:grid;
     grid-template-rows: 20px 20px 20px 50px;
 }
 
+.ownerLabel{
+    font-family: Avenir;
+    align:left;
+    padding-left: 10px;
+}
 /*.divButton{*/
 /*    display: grid;*/
 /*    grid-template-columns: 200px 200px;*/

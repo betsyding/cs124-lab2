@@ -8,7 +8,7 @@ Lab 2 Design Document
 
 For Lab 2, we decided to keep many of the original elements from our design in Lab 1. From Lab 1, we carried over the alignment and fonts of the text, including the header and list items, as well as the purple and blue theme, and the button orientation. These design choices were based on Dr. Milburn’s lecture on using only 2-3 colors, 2-3 font choices, and the Western appeal of left alignment. 
 
-With the design from Lab 1 in mind, as well as our original interface inspirations (the Notes App and Kaiser App), we made several alterations: we made the background white to cultivate a cleaner UI, added a pencil emoji into the header for a whimsy touch, made the text boxes invisible, and changed the text of the button “Hide completed items/show all items” to be more concise. These various design elements were added both by copying the CSS from Lab 1 into App.js, as well as adding additional CSS throughout Lab 2 as we deemed fit. 
+With the design from Lab 1 in mind, as well as our original interface inspirations (the Notes SignedInApp and Kaiser SignedInApp), we made several alterations: we made the background white to cultivate a cleaner UI, added a pencil emoji into the header for a whimsy touch, made the text boxes invisible, and changed the text of the button “Hide completed items/show all items” to be more concise. These various design elements were added both by copying the CSS from Lab 1 into SignedInApp.js, as well as adding additional CSS throughout Lab 2 as we deemed fit. 
 
 After refining our code and design, testing different elements as users ourselves and using the console to troubleshoot, we were able to share our design with peers to conduct user testing. 
 
@@ -169,11 +169,11 @@ Our application design accounts for resizing in a couple of ways. 1) As the user
 
 Other Design Updates and Reflections
 
-We decided to move all the functionality of a task list (create a new item, sorting, delete completed, etc.) to a separate component from App. This way, the user can interact with and manipulate task lists individually. Transferring the functionality of lists from the App component to the TaskList component proved to be challenging, as it required us to rethink the hierarchy of our app while also tweaking the code to fit this new component. Overall, a lot of the functionality between lists and task items stayed the same, it just required a bit of restructuring.
+We decided to move all the functionality of a task list (create a new item, sorting, delete completed, etc.) to a separate component from SignedInApp. This way, the user can interact with and manipulate task lists individually. Transferring the functionality of lists from the SignedInApp component to the TaskList component proved to be challenging, as it required us to rethink the hierarchy of our app while also tweaking the code to fit this new component. Overall, a lot of the functionality between lists and task items stayed the same, it just required a bit of restructuring.
 We decided to include an editable list name that operates similarly to the new task name textbox. We also added a third button that allows the user to delete the list.
 
 
-As for the UI, we took inspiration from Dr. Milburn’s design principles by drawing parallels between how a user creates new items and creates a new list. We think this makes the App more intuitive and aesthetic.
+As for the UI, we took inspiration from Dr. Milburn’s design principles by drawing parallels between how a user creates new items and creates a new list. We think this makes the SignedInApp more intuitive and aesthetic.
 
 New User Testing: 
 
