@@ -214,6 +214,60 @@ cons:
 Lab 5 Updates:
 
 For this lab, we focused on creating a log-in for users, list sharing, and ensuring that there is sufficient security through
-firestore rules. 
+firestore rules. With these new features, we still ensured that our app is accessible to all screen sizes and people with 
+visual disabilities, as well as remain aesthetically pleasing using Dr. Milburn's Principles of Design. 
 
-For UI design, we decided to create buttons to indicate list sharing and to show a user's own lists. 
+We decided to have a landing page that required users to log into an account or would be able to create an account before 
+they can access the features of our app. To design this, we used the same Avenir font and purple, grey, and black color 
+scheme as our app. We also ensured that this landing page is accessible by using a 12 pt font size or higher and colors that
+fit the qualifications of contrast for vision-impaired users. 
+
+After the user logs into their account, their name appears on the top left of the page. They also have options to sign
+out and verify their accounts for security reasons. We designed this to use the same color scheme and font choice as the
+rest of our app, and stuck with the left alignment, and used 2-3 fonts, keeping Dr. Milburn's Principles of Design in mind.
+
+We decided to initiate sharing by creating an alert that would pop up when the owner clicks the share button, in which they
+can type in another user's email. This alert function makes it easy for the owner to share with whomever they like, and we
+designed it so that there is a grey backdrop across the entire screenpage for responsive design and aesthetic unity across the page. 
+
+We also created buttons to indicate list sharing and to show a user's own lists and used these questions
+to drive how our app would look, depending on if they are verified or unverified or if they own the document:  
+
+
+If user A shares a list with user B, can user B share that list with user C?
+
+No! We disable the share feature from shared lists that do not belong to the user. Our firebase rules also reflect this by making sure when a doc is updated, the owner doesn’t change and the sharedWith array still includes the user.
+
+If user A shares a list with user B, can user B delete that list?
+
+Also no! We disabled this by removing the delete button from shared lists. We also reinforced this design in our firebase rules by making sure only the doc owner can delete.
+
+If user A shares a list with user B, does user B need to accept that sharing, or will a shared list just show up?
+
+The shared list simply shows up, however we do give the user the option to show only their lists and hide the lists shared from other users.
+
+Should shared lists be distinguishable in the UI from unshared lists?
+
+Yes! We’ve distinguished owned lists from shared lists by annotating each list with the owner’s email at the top.
+
+If user A shares a list with user B, can user B see that list if they don't have a verified email address?
+
+No! While user A can still share a list with an unverified user, the list will not show up until user B verifies their account. We did this by having two possible queries depending on the account verification. Our firebase rules also reflect the verification designs by only allowing read and update if the user is verified.
+
+With these new share buttons, we ensured that our app still had responsive design for different screen sizes and was easy to 
+read visually. We ensured that our design was most optimal by using CSS, toggling with different ordering of the buttons 
+on the interface in the actual code, and through user testing. 
+
+Updated User Testing:
+
+Hannah: She liked the color scheme and the structure of the website. However, she doesn’t like that you have to scroll down to see the new list added. She also noticed that long entries in the text box fields get cut off and didn’t like that.
+
+
+Lily: She liked the priority feature and the idea of sharing a to do list with another person. She asked if there was an ability to leave a shared list and was disappointed that you couldn’t. Thinks the app could use some more fun colors — but we explained our design principles and color palette choice.
+
+
+Lara: She found the to do lists pretty intuitive to use. She also thought sharing to do lists was cool and interesting. She seemed confused by the log in page and thought maybe we should try to differentiate a new log in from a previous. Also suggested that sorting by category might be helpful.
+
+Overall, we enjoyed the challenge of learning how firestore rules worked, since that was most difficult part of our lab. 
+We had to write several new functions, such as isSharedOnlyWithMe and stillSharedWithMe in our firestore rules to ensure 
+that our app had the best security. We're glad to see everything come together and are excited to use this app in our own time. 
