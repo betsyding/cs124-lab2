@@ -1,14 +1,6 @@
 body{
   padding-left: 8pt;
 }
- /*@media screen and (max-width:1200px){*/
- /*  .centerContent {*/
- /*   !*max-width: 200%;*!*/
- /*   !*max-height:200%;*!*/
- /*    width: 100%;*/
- /*    margin-left: 25%;*/
- /*    margin-right:25%;*/
- /* }*/
 
 .centerContent{
   display:grid;
@@ -157,4 +149,64 @@ label.listItem:hover {
   display: grid;
   margin: 0px 0px -10px 10px;
   position:relative;
+}
+
+.signOutButton{
+  font-family: Avenir;
+  font-size: 12pt;
+  /*alignment: right;*/
+
+}
+.verifyButton {
+  font-family: Avenir;
+  font-size: 12pt;
+  margin: 0px 0px 10px 20px;
+}
+
+.displayName{
+  font-family: Avenir;
+  font-size: 12pt;
+}
+
+.pageToSignIn{
+  font-family: Avenir;
+  font-size: 12pt;
+}
+
+.signInWithEmail{
+  font-family: Avenir;
+  font-size: 12pt;
+}
+.signInWithGoogle{
+  font-family: Avenir;
+  font-size: 12pt;
+}
+
+.createTestUser{
+  font-family: Avenir;
+  font-size: 12pt;
+}
+
+.createTestUserButton{
+  font-family: Avenir;
+  font-size: 12pt;
+}
+#email{
+  font-family:Avenir;
+  font-size: 12pt
+}
+#pw{
+  font-size: 12pt
+}
+
+.break{
+  font-size: 5pt;
+}
+.showShared{
+  font-family: Avenir;
+  font-size: 12pt;
+  border-color: steelblue;
+  border-width: thin;
+  width: 200px;
+  height: 45px;
 }

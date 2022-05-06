@@ -1,0 +1,93 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+     function signedIn() {
+      return request.auth.uid != null;
+    }
+
+    function isDocOwner() {
+      return request.auth.uid == resource.data.owner;
+    }
+
+    function updatedDocHasCorrectOwner() {
+      return request.auth.uid == request.resource.data.owner;
+    }
+
+    function updatedDocHasSameOwner() {
+      return resource.data.owner == request.resource.data.owner;
+    }
+
+    function updatedDocHasSameSharing() {
+      return resource.data.sharedWith == request.resource.data.sharedWith;
+    }
+
+    function isSharedWithMe() {
+      return request.auth.token.email in resource.data.sharedWith;
+    }
+
+    function isSharedOnlyWithMe() {
+    	return [request.auth.token.email] == request.resource.data.sharedWith;
+    }
+
+    function isVerified() {
+    	return request.auth.token.email_verified;
+    }
+
+    function stillSharedWithMe() {
+    	return request.auth.token.email in request.resource.data.sharedWith;
+    }
+
+    match /Lists-AuthenticationRequired/{list} {
+      allow read: if signedIn() && isDocOwner();
+      allow create: if signedIn()&& updatedDocHasCorrectOwner();
+      allow update: if signedIn() && isDocOwner() &&
+        updatedDocHasCorrectOwner();
+      allow delete: if signedIn() && isDocOwner();
+      	match /Tasks-AuthenticationRequired/{task} {
+      		allow read: if signedIn() && isDocOwner();
+      		allow create: if signedIn() && updatedDocHasCorrectOwner();
+      		allow update: if signedIn() && isDocOwner() &&
+        		updatedDocHasCorrectOwner();
+      		allow delete: if signedIn() && isDocOwner();
+    	}
+    }
+
+    isSharedWithMe_Task(list){
+        get(/database/$(database)/documents/lists/$(list).token.email in resource.data.sharedWith
+    }
+
+    isVerified_Task(list) {
+        get(/database/$(database)/documents/lists/$(list).token.email_verified
+    }
+
+    isDocOwner_Task(list) {
+        request.auth.uid == get(/database/$(database)/documents/lists/$(list).data.owner;
+    }
+
+    updatedDocHasCorrectOwner_Task(list) {
+        return request.auth.uid == get(/database/$(database)/documents/lists/$(list).data.owner;
+    }
+
+    updatedDocHasSameOwner_Task(list) {
+        return get(/database/$(database)/documents/lists/$(list).data.owner == request.get(/database/$(database)/documents/lists/$(list).data.owner;
+    }
+
+    match /Lists-SharingAllowed/{list} {
+      allow read: if signedIn() && ((isSharedWithMe() && isVerified()) || isDocOwner());
+      allow create: if signedIn() && updatedDocHasCorrectOwner() &&  isSharedOnlyWithMe();
+      allow update: if signedIn() && updatedDocHasSameOwner() && ((isSharedWithMe() && isVerified()) || (isDocOwner() && stillSharedWithMe()));
+      allow delete: if signedIn() && isDocOwner();
+      	 match /Tasks-SharingAllowed/{task} {
+            allow create: if signedIn() && ((isSharedWithMe_Task(list) && isVerified_Task(list)) || isDocOwner_Task(list));
+            allow read: if signedIn() && updatedDocHasCorrectOwner_Task(list);
+            allow update: if signedIn() && updatedDocHasSameOwner_Task(list);
+            allow delete: if signedIn() && isDocOwner_Task(list);
+        }
+    }
+
+    // match /{document=**} {
+    // 	allow read, write: if
+    //       request.time < timestamp.date(2022, 6, 10);
+    //  }
+  }
+}
