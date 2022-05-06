@@ -17,8 +17,6 @@ import {useState} from "react";
 
 const auth = getAuth();
 
-const collectionName = "People-AuthenticationRequired"
-
 function App(props) {
     const [user, userLoading, userError] = useAuthState(auth);
     function verifyEmail() {

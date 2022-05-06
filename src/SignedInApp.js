@@ -25,7 +25,13 @@ export const tasksCollectionName = "Tasks-SharingAllowed";
 
 
 function SignedInApp(props) {
-    const q = query(collection(db, collectionName), where("sharedWith", "array-contains", props.user.email));
+    let q
+    if (props.user.emailVerified){
+        q = query(collection(db, collectionName), where("sharedWith", "array-contains", props.user.email));
+    } else {
+        q = query(collection(db, collectionName), where("owner", "==", props.user.uid));
+    }
+
     const [lists, loading, error] = useCollectionData(q);
     const [showOnlyMyLists, setShowOnlyMyLists] = useState(false);
 

@@ -210,3 +210,10 @@ cons:
 -not much, but I think creating a separate feature for due dates would be helpful/less confusing instead of typing the dates into the title item!
 
 -additional idea (but not necessary) is to add in a collapse&expand feature for each of the lists that would just show the title
+
+Lab 5 Updates:
+
+For this lab, we focused on creating a log-in for users, list sharing, and ensuring that there is sufficient security through
+firestore rules. 
+
+For UI design, we decided to create buttons to indicate list sharing and to show a user's own lists. 

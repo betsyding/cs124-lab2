@@ -139,9 +139,9 @@ export default function TaskList(props) {
                             Completed Items
                         </button>
 
-                        <button className="deleteList" type="button" id="deleteList" onClick={handleDeleteList}> Delete
+                        {props.owner === props.user.uid && <button className="deleteList" type="button" id="deleteList" onClick={handleDeleteList}> Delete
                             List
-                        </button>
+                        </button>}
 
                         {props.owner === props.user.uid && <button className="shareList" type="button" id="shareList" onClick={toggleModal}> Share List
                         </button>}
